@@ -9,7 +9,7 @@ function ListTasks() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:8080/tasks")
+    fetch("https://jellyfish-app-4sahl.ondigitalocean.app/tasks")
       .then((res) => res.json())
       .then((data) => setTasks(data));
   }, []);
