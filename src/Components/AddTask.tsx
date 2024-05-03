@@ -22,6 +22,7 @@ function AddTask() {
           type="text"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
+          placeholder="Add new tasks"
         ></input>
         <button>Add</button>
       </form>
