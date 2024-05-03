@@ -5,9 +5,19 @@ interface Task {
   taskName: string;
 }
 
-function TaskItem({ task }: { task: Task }) {
+function TaskItem({ task, onDelete }: { task: Task; onDelete: () => void }) {
   const [time, setTime] = useState(0);
   const [timerRunning, setTimerRunning] = useState(false);
+
+  const deleteTask = async () => {
+    await fetch(
+      `https://jellyfish-app-4sahl.ondigitalocean.app/task/${task.id}`,
+      {
+        method: "DELETE",
+      }
+    );
+    onDelete();
+  };
 
   useEffect(() => {
     let interval;
@@ -46,6 +56,7 @@ function TaskItem({ task }: { task: Task }) {
       )}
       <span>{"0" + Math.floor((time / 60000) % 60)}:</span>
       <span>{"0" + Math.floor((time / 1000) % 60)}</span>
+      <button onClick={deleteTask}>Delete</button>
     </div>
   );
 }
