@@ -23,7 +23,7 @@ function AddTask() {
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
         ></input>
-        <button>Lägg till</button>
+        <button>Add</button>
       </form>
     </div>
   );
