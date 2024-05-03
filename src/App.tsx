@@ -4,6 +4,7 @@ import Statistics from "./Components/Pages/Statistics";
 import Start from "./Components/Pages/Start";
 import { useEffect, useState } from "react";
 import NavBar from "./Components/NavBar";
+import Add from "./Components/Pages/Add";
 
 function App() {
   const [page, setPage] = useState<string>("");
@@ -35,6 +36,7 @@ function App() {
         {
           start: <Start />,
           tasks: <Tasks />,
+          add: <Add />,
           statistics: <Statistics />,
         }[page]
       }
