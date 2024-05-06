@@ -1,4 +1,4 @@
-import ListTasks from "../ListTasks";
+import ListTasks from "../TaskList";
 
 function Tasks() {
   return (
