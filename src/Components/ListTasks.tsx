@@ -6,7 +6,7 @@ interface Task {
   taskName: string;
 }
 
-function TaskList() {
+function ListTasks() {
   const [tasks, setTasks] = useState<Task[]>([]);
 
   const deleteTask = (taskId: string) => {
@@ -21,15 +21,19 @@ function TaskList() {
 
   return (
     <>
-      {tasks.map((task: Task) => (
-        <TaskItem
-          key={task.id}
-          task={task}
-          onDelete={() => deleteTask(task.id)}
-        />
-      ))}
+      {tasks.length > 0 ? (
+        tasks.map((task: Task) => (
+          <TaskItem
+            key={task.id}
+            task={task}
+            onDelete={() => deleteTask(task.id)}
+          />
+        ))
+      ) : (
+        <p>You currently do not have any tasks!</p>
+      )}
     </>
   );
 }
 
-export default TaskList;
+export default ListTasks;
