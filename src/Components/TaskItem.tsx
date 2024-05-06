@@ -20,6 +20,14 @@ function TaskItem({ task, onDelete }: { task: Task; onDelete: () => void }) {
   };
 
   useEffect(() => {
+    fetch(`https://jellyfish-app-4sahl.ondigitalocean.app/task/${task.id}/time`)
+      .then((res) => res.json())
+      .then((data) => {
+        setTime(data);
+      });
+  }, [task.id]);
+
+  useEffect(() => {
     let interval;
     if (timerRunning) {
       interval = setInterval(() => {
@@ -46,6 +54,12 @@ function TaskItem({ task, onDelete }: { task: Task; onDelete: () => void }) {
     );
   };
 
+  const formatTimer = (time: number) => {
+    const mins = Math.floor((time / 60000) % 60);
+    const secs = Math.floor((time / 1000) % 60);
+    return `${mins < 10 ? "0" : ""}${mins}:${secs < 10 ? "0" : ""}${secs}`;
+  };
+
   return (
     <div key={task.id}>
       {task.taskName}
@@ -54,8 +68,7 @@ function TaskItem({ task, onDelete }: { task: Task; onDelete: () => void }) {
       ) : (
         <button onClick={() => setTimerRunning(true)}>Start timer</button>
       )}
-      <span>{"0" + Math.floor((time / 60000) % 60)}:</span>
-      <span>{"0" + Math.floor((time / 1000) % 60)}</span>
+      <span>{formatTimer(time)}</span>
       <button onClick={deleteTask}>Delete</button>
     </div>
   );
