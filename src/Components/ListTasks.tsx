@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
 import TaskItem from "./TaskItem";
-
-interface Task {
-  id: string;
-  taskName: string;
-}
+import { Task } from "./TaskItem";
 
 function ListTasks() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -14,7 +10,7 @@ function ListTasks() {
   };
 
   useEffect(() => {
-    fetch("https://jellyfish-app-4sahl.ondigitalocean.app/tasks")
+    fetch("https://jellyfish-app-4sahl.ondigitalocean.app/tasks/active")
       .then((res) => res.json())
       .then((data) => setTasks(data));
   }, []);
