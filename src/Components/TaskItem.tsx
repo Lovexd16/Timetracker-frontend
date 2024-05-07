@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 
-interface Task {
+export interface Task {
   id: string;
   taskName: string;
+  taskDate: string;
+  time: number;
 }
 
 function TaskItem({ task, onDelete }: { task: Task; onDelete: () => void }) {
@@ -11,7 +13,7 @@ function TaskItem({ task, onDelete }: { task: Task; onDelete: () => void }) {
 
   const deleteTask = async () => {
     await fetch(
-      `https://jellyfish-app-4sahl.ondigitalocean.app/task/${task.id}`,
+      `https://jellyfish-app-4sahl.ondigitalocean.app/task/${task.id}/soft`,
       {
         method: "DELETE",
       }
