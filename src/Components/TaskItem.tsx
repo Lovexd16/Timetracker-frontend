@@ -61,15 +61,23 @@ function TaskItem({ task, onDelete }: { task: Task; onDelete: () => void }) {
   };
 
   return (
-    <div key={task.id}>
-      {task.taskName}
+    <div key={task.id} className="taskContainer">
+      <h3>{task.taskName}</h3>
       {timerRunning ? (
-        <button onClick={saveTime}>Stop timer</button>
+        <button className="stopBtn" onClick={saveTime}>
+          Stop timer
+        </button>
       ) : (
-        <button onClick={() => setTimerRunning(true)}>Start timer</button>
+        <button className="startBtn" onClick={() => setTimerRunning(true)}>
+          Start timer
+        </button>
       )}
-      <span>{formatTimer(time)}</span>
-      <button onClick={deleteTask}>Delete</button>
+
+      <span className="timer">{formatTimer(time)}</span>
+
+      <button className="deleteBtn" onClick={deleteTask}>
+        Delete
+      </button>
     </div>
   );
 }

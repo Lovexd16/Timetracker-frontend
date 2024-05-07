@@ -1,10 +1,10 @@
 function Start() {
   return (
     <div>
-      <h3>
+      <h2>
         Welcome to TimeTracker – your ultimate companion for productivity and
         time management!
-      </h3>
+      </h2>
       <p>
         With TimeTracker, you can easily organize your time and increase your
         efficiency by adding tasks, timing them, and tracking your progress with

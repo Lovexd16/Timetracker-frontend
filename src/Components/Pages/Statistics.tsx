@@ -11,8 +11,10 @@ function Statistics() {
 
   return (
     <div>
-      <h3>Statistics</h3>
-      <p>View your total time spent on your tasks:</p>
+      <h2>Statistics</h2>
+      <p className="statisticsText">
+        View your total time spent on your tasks:
+      </p>
       <Calendar onDateSelection={handleDateSelection} />
     </div>
   );

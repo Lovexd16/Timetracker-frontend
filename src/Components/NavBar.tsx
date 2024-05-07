@@ -4,7 +4,7 @@ interface Props {
 
 function NavBar(props: Props) {
   return (
-    <div>
+    <div className="navBar">
       <button onClick={() => props.setPage("start")}>Homepage</button>
       <button onClick={() => props.setPage("tasks")}>Task list</button>
       <button onClick={() => props.setPage("add")}>Add tasks</button>

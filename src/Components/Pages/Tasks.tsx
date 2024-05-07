@@ -3,7 +3,7 @@ import ListTasks from "../ListTasks";
 function Tasks() {
   return (
     <div>
-      <h3>Tasks:</h3>
+      <h2>Tasks:</h2>
       <ListTasks />
     </div>
   );
