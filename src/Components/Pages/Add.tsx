@@ -3,7 +3,7 @@ import AddTask from "../AddTask";
 function Add() {
   return (
     <div>
-      <h3>Add new tasks here!</h3>
+      <h2>Add new tasks here!</h2>
       <AddTask />
     </div>
   );
