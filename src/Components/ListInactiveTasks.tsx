@@ -11,15 +11,14 @@ function ListInactiveTasks() {
       .then((data) => setInactiveTasks(data));
   }, []);
 
-  const handleHardDelete = (taskId: string) => {
+  const handleHardDelete = async (taskId: string) => {
     fetch(`https://jellyfish-app-4sahl.ondigitalocean.app/task/${taskId}`, {
       method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setInactiveTasks(inactiveTasks.filter((task) => task.id !== taskId));
-        console.log(data);
-      });
+    });
+    setInactiveTasks((prevInactiveTasks) =>
+      prevInactiveTasks.filter((task) => task.id !== taskId)
+    );
+    console.log("Task successfully deleted");
   };
 
   return (
