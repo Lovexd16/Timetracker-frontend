@@ -12,15 +12,20 @@ function ListActiveTasks() {
   }, []);
 
   return (
-    <div className="statsLists">
-      <h2>Aktiva uppgifter:</h2>
-      {activeTasks.map((task) => (
-        <div key={task.id}>
-          <p>Task Name: {task.taskName}</p>
-          <p>Time spent: {formatTime(task.time)}</p>
-          <p>Creation date: {task.taskDate}</p>
-        </div>
-      ))}
+    <div className="taskContainer">
+      <h2>Active tasks:</h2>
+      <p className="statisticsText">View time spent on tasks this week:</p>
+      {activeTasks.length === 0 ? (
+        <p>You do not have any active tasks.</p>
+      ) : (
+        activeTasks.map((task) => (
+          <div key={task.id}>
+            <h3>Task name: {task.taskName}</h3>
+            <p className="timer">Time: {formatTime(task.time)}</p>
+            <p>Creation date: {task.taskDate}</p>
+          </div>
+        ))
+      )}
     </div>
   );
 }
