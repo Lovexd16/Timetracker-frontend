@@ -12,7 +12,10 @@ function AddTask() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ taskName: newTask }),
-    }).then(() => setNewTask(""));
+    }).then(() => {
+      setNewTask("");
+      alert("Your task has been added!");
+    });
   };
 
   return (
@@ -23,6 +26,7 @@ function AddTask() {
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
           placeholder="Add new tasks"
+          required
         ></input>
         <button>Add</button>
       </form>
