@@ -22,21 +22,26 @@ function ListInactiveTasks() {
   };
 
   return (
-    <div className="statsLists">
-      <h2>Inaktiva uppgifter:</h2>
-      {inactiveTasks.map((task) => (
-        <div key={task.id}>
-          <p>Task name: {task.taskName}</p>
-          <p>Time: {formatTime(task.time)}</p>
-          <p>Creation date: {task.taskDate}</p>
-          <button
-            className="deleteBtn"
-            onClick={() => handleHardDelete(task.id)}
-          >
-            Delete
-          </button>
-        </div>
-      ))}
+    <div className="taskContainer">
+      <h2>Inactive tasks:</h2>
+      <p className="statisticsText">View time spent on tasks in total:</p>
+      {inactiveTasks.length === 0 ? (
+        <p>You do not have any inactive tasks.</p>
+      ) : (
+        inactiveTasks.map((task) => (
+          <div key={task.id}>
+            <h3>Task name: {task.taskName}</h3>
+            <p className="timer">Time: {formatTime(task.time)}</p>
+            <p>Creation date: {task.taskDate}</p>
+            <button
+              className="deleteBtn"
+              onClick={() => handleHardDelete(task.id)}
+            >
+              Delete forever
+            </button>
+          </div>
+        ))
+      )}
     </div>
   );
 }
