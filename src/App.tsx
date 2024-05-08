@@ -20,20 +20,24 @@ function App() {
         pageUrl = getUrl;
         setPage(getUrl);
       } else {
+        //Om sidan inte finns skickas man till start sidan
         pageUrl = "start";
       }
     }
 
+    //Visar sidan man är på i URL:en
     window.history.pushState(null, "", "?page=" + pageUrl);
   }, [page]);
 
   return (
     <>
       <h1>TimeTracker</h1>
+      {/*Visar NavBar komponenten*/}
       <NavBar setPage={setPage} />
 
       {
         {
+          //switch som sätter sidan till rätt komponent
           start: <Start />,
           tasks: <Tasks />,
           add: <Add />,
