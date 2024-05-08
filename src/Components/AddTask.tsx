@@ -33,7 +33,7 @@ function AddTask() {
           placeholder="Add new tasks"
           required
         ></input>
-        <button>Add</button>
+        <button className="addBtn">Add</button>
       </form>
     </div>
   );
