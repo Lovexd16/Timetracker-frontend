@@ -2,6 +2,7 @@ function Start() {
   return (
     <div>
       <h2>Welcome to TimeTracker!</h2>
+      {/*Ger ett className för att kunna hantera i css*/}
       <p className="startPageText">
         With TimeTracker, you can easily organize your time and increase your
         efficiency by adding tasks, timing them, and tracking your progress with

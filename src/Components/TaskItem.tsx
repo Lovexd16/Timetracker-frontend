@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import formatTime from "./Utilities/FormatTimeStats";
 
 export interface Task {
   id: string;
@@ -11,6 +12,7 @@ function TaskItem({ task, onDelete }: { task: Task; onDelete: () => void }) {
   const [time, setTime] = useState(0);
   const [timerRunning, setTimerRunning] = useState(false);
 
+  //Fetchar endpointen för att soft deleta en task
   const deleteTask = async () => {
     await fetch(
       `https://jellyfish-app-4sahl.ondigitalocean.app/task/${task.id}/soft`,
@@ -21,6 +23,7 @@ function TaskItem({ task, onDelete }: { task: Task; onDelete: () => void }) {
     onDelete();
   };
 
+  //Fetchar endpointen för att visa tiden av en task
   useEffect(() => {
     fetch(`https://jellyfish-app-4sahl.ondigitalocean.app/task/${task.id}/time`)
       .then((res) => res.json())
@@ -29,6 +32,7 @@ function TaskItem({ task, onDelete }: { task: Task; onDelete: () => void }) {
       });
   }, [task.id]);
 
+  //useEffect för att hantera start och stop av timern
   useEffect(() => {
     let interval;
     if (timerRunning) {
@@ -41,6 +45,7 @@ function TaskItem({ task, onDelete }: { task: Task; onDelete: () => void }) {
     return () => clearInterval(interval!);
   }, [timerRunning]);
 
+  //Stannar timern och fetchar patch endpoint för att ändra den sparade tiden till den nya tiden
   const saveTime = async () => {
     setTimerRunning(false);
 
@@ -56,27 +61,25 @@ function TaskItem({ task, onDelete }: { task: Task; onDelete: () => void }) {
     );
   };
 
-  const formatTimer = (time: number) => {
-    const mins = Math.floor((time / 60000) % 60);
-    const secs = Math.floor((time / 1000) % 60);
-    return `${mins < 10 ? "0" : ""}${mins}:${secs < 10 ? "0" : ""}${secs}`;
-  };
-
   return (
     <div key={task.id} className="taskContainer">
       <h3>{task.taskName}</h3>
+      {/*Om timern är på, visas knappen som "Stop timer", och när den trycks sparas den nya tiden till databasen*/}
       {timerRunning ? (
         <button className="stopBtn" onClick={saveTime}>
           Stop timer
         </button>
       ) : (
+        //Annars visas knappen som "Start timer", som vid klick startar timern
         <button className="startBtn" onClick={() => setTimerRunning(true)}>
           Start timer
         </button>
       )}
 
-      <span className="timer">{formatTimer(time)}</span>
+      {/*Visar tiden med formatet från utlities fil*/}
+      <span className="timer">{formatTime(time)}</span>
 
+      {/*Knapp för att soft-deleta tasks med deleteTask*/}
       <button className="deleteBtn" onClick={deleteTask}>
         Delete
       </button>

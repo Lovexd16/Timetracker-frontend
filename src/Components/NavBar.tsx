@@ -1,7 +1,7 @@
 interface Props {
   setPage: (page: string) => void;
 }
-
+//Skapar navigationsknapparna och sätter även vilken sida man ska tas till vid klick
 function NavBar(props: Props) {
   return (
     <div className="navBar">
