@@ -29,8 +29,12 @@ button {
   cursor: pointer;
 }
 
+.addBtn:hover {
+  background-color: lightgreen;
+}
+
 .stopBtn:hover {
-  background-color: red;
+  background-color: lightcoral;
 }
 
 .startBtn:hover {
@@ -38,7 +42,7 @@ button {
 }
 
 .deleteBtn:hover {
-  background-color: red;
+  background-color: lightcoral;
 }
 
 .navBar {
